@@ -34,7 +34,7 @@ jobs:
         with:
           owner: aqeeleurus
           repo: blog-child-workflow
-          github_token: ${{ secrets.TRIGGER_ACTION_TOKEN }}
+          github_token: ${{ secrets.GITHUB_TOKEN }}
           workflow_file_name: blank.yml
           ref: main
           wait_interval: 10
