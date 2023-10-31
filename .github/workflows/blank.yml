@@ -38,7 +38,6 @@ jobs:
           workflow_file_name: blank.yml
           ref: main
           wait_interval: 10
-          interval: 10
           propagate_failure: true
           trigger_workflow: true
           wait_workflow: true
