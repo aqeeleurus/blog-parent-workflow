@@ -39,5 +39,6 @@ jobs:
           ref: main
           wait_interval: 10
           propagate_failure: true
+          client_payload: '{"name": "testing"}'
           trigger_workflow: true
           wait_workflow: true
