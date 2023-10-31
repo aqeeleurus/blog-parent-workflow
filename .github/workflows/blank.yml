@@ -44,6 +44,6 @@ jobs:
           ref: main
           wait_interval: 10
           propagate_failure: true
-          client_payload: '{"name": $ENV_NAME}'
+          client_payload: '{"name": "${{ inputs.name }}"}'
           trigger_workflow: true
           wait_workflow: true
