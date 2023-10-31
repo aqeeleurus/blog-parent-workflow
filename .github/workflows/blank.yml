@@ -5,13 +5,16 @@ name: Parent workflow
 # Controls when the workflow will run
 on:
   # Triggers the workflow on push or pull request events but only for the "main" branch
-  push:
-    branches: [ "main" ]
-  pull_request:
-    branches: [ "main" ]
+  # push:
+  #   branches: [ "main" ]
+  # pull_request:
+  #   branches: [ "main" ]
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
+    inputs:
+      name:
+        type: string
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
@@ -31,14 +34,16 @@ jobs:
         
       - name: Trigger child repo workflow
         uses: convictional/trigger-workflow-and-wait@v1.6.1
+        env:
+          ENV_NAME: ${{ inputs.name }}
         with:
           owner: aqeeleurus
           repo: blog-child-workflow
-          github_token: ${{ secrets.GITHUB_TOKEN }}
+          github_token: ${{ secrets.TRIGGER_ACTION_TOKEN }}
           workflow_file_name: blank.yml
           ref: main
           wait_interval: 10
           propagate_failure: true
-          client_payload: '{"name": "testing"}'
+          client_payload: '{"name": "$ENV_NAME"}'
           trigger_workflow: true
           wait_workflow: true
